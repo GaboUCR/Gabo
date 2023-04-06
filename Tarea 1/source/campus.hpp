@@ -1,3 +1,5 @@
+#ifndef CAMPUS_H
+#define CAMPUS_H
 #include <iostream>
 #include <list>
 #include <string>
@@ -5,18 +7,9 @@ using namespace std;
 
 class Edificio {
 
-    private:
+    protected:
         bool ascensor;  
-};
 
-class EdificioDeAulas : public Edificio {
-
-    private:
-        bool soda;
-        list<Aula> aulas;
-    
-    public:
-        EdificioDeAulas (bool soda, list<Aula> aulas);
 };
 
 class Aula {
@@ -26,10 +19,24 @@ class Aula {
         int pupitres;
         bool proyector;
 
-    Aula (int id, int pupitres, bool proyector);
+    public:
+        Aula (int id, int pupitres, bool proyector);
+};
+
+class EdificioDeAulas : public Edificio {
+
+    private:
+        bool soda;
+        list<Aula> aulas;
+    
+    public:
+        EdificioDeAulas (bool ascensor, bool soda, list<Aula> aulas);
 };
 
 class Parqueo : public Edificio {
+    
+    public:
+        Parqueo(bool ascensor);
 };
 
 class Finca {
@@ -43,13 +50,15 @@ class Finca {
         Finca(bool bus_interno, string nombre, list<Edificio> edificios);
 };
 
-class Campus {
+class Campus { 
 
     private:
-        Finca fincas [5];
+        list<Finca> fincas;
         int indice;
 
     public:
     
-        Campus (Finca* fincas);
+        Campus (list<Finca> fincas);
 };
+
+#endif
