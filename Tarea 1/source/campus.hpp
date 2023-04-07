@@ -8,7 +8,10 @@ using namespace std;
 class Edificio {
 
     protected:
-        bool ascensor;  
+        bool ascensor;
+
+    public:
+        virtual ~Edificio() {}  
 
 };
 
@@ -18,9 +21,11 @@ class Aula {
         int id;
         int pupitres;
         bool proyector;
-
+        
     public:
         Aula (int id, int pupitres, bool proyector);
+        void imprimir();
+
 };
 
 class EdificioDeAulas : public Edificio {
@@ -31,6 +36,7 @@ class EdificioDeAulas : public Edificio {
     
     public:
         EdificioDeAulas (bool ascensor, bool soda, list<Aula> aulas);
+        void imprimir ();
 };
 
 class Parqueo : public Edificio {
@@ -43,22 +49,26 @@ class Finca {
 
     private:
         bool bus_interno;
-        list<Edificio> edificios; 
+        list<Edificio*> edificios; 
         string nombre;
 
     public:
-        Finca(bool bus_interno, string nombre, list<Edificio> edificios);
+        Finca(bool bus_interno, string nombre, list<Edificio*> edificios); 
+        list<Edificio*> getEdificios();
+        bool getBusInterno ();
+        string getNombre();
+        void imprimir();
 };
 
 class Campus { 
 
     private:
         list<Finca> fincas;
-        int indice;
+        string nombre;
 
     public:
-    
-        Campus (list<Finca> fincas);
+        Campus (list<Finca> fincas, string nombre);
+        void imprimir();
 };
 
 #endif
