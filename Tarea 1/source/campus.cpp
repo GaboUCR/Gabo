@@ -1,38 +1,38 @@
 #include <iostream>
 #include <list>
 #include <string>
-using namespace std;
 #include "campus.hpp"
+
+using namespace std;
 
 Aula::Aula(int id, int pupitres, bool proyector) {
     this->id = id;
     this->pupitres = pupitres;
-    this->proyector = proyector; 
+    this->proyector = proyector;
 }
 
-void Aula::Aula::imprimir () {
-
+void Aula::imprimir() {
     if (this->proyector) {
-
-        cout << "El aula " << this->id << ", posee "<< this->pupitres << " aulas y tiene proyector." << endl;
-    }
-    else {
-
-        cout << "El aula " << this->id << ", posee "<< this->pupitres << " aulas y no tiene proyector." << endl;
+        cout << "El aula " << this->id << ", posee " << this->pupitres << " pupitres y tiene proyector." << endl;
+    } else {
+        cout << "El aula " << this->id << ", posee " << this->pupitres << " pupitres y no tiene proyector." << endl;
     }
 }
 
-EdificioDeAulas::EdificioDeAulas(bool ascensor, bool soda, list<Aula> aulas) {
+EdificioDeAulas::EdificioDeAulas(bool ascensor, bool soda, list<Aula*> aulas) {
     this->soda = soda;
     this->aulas = aulas;
     this->ascensor = ascensor;
 }
 
-void EdificioDeAulas::EdificioDeAulas::imprimir() {
+void EdificioDeAulas::imprimir() {
+    for (auto it = this->aulas.begin(); it != this->aulas.end(); ++it) {
+        (*it)->imprimir();
+    }
+}
 
-    for (auto it = (this->aulas).begin(); it != (this->aulas).end(); ++it) {
-        it->imprimir();
-    }    
+list<Aula*> EdificioDeAulas::getAulas() {
+    return this->aulas;
 }
 
 Parqueo::Parqueo(bool ascensor) {
@@ -45,46 +45,38 @@ Finca::Finca(bool bus_interno, string nombre, list<Edificio*> edificios) {
     this->edificios = edificios;
 }
 
-void Finca::Finca::imprimir() {
-
+void Finca::imprimir() {
     int aulas = 0;
     int parqueos = 0;
 
-    for (auto it = (this->edificios).begin(); it != (this->edificios).end(); ++it) {
-                
+    for (auto it = this->edificios.begin(); it != this->edificios.end(); ++it) {
         if (auto aula = dynamic_cast<EdificioDeAulas*>(*it)) {
-            // handle the Aula case
             aulas++;
-        }
-        // check if the current edificio is a Parqueo
-        else if (auto parqueo = dynamic_cast<Parqueo*>(*it)) {
-            // handle the Parqueo case
+        } else if (auto parqueo = dynamic_cast<Parqueo*>(*it)) {
             parqueos++;
         }
-            
-    }    
+    }
 
-    cout << "Finca "<< this->nombre <<"    Posee "<< (this->edificios).size() << " edificios, " << parqueos <<" son parqueos y " << aulas << " son aulas" << endl; 
+    cout << "Finca " << this->nombre << "    Posee " << this->edificios.size() << " edificios, " << parqueos << " son parqueos y " << aulas << " son aulas" << endl;
 }
 
-string Finca::Finca::getNombre() {
+string Finca::getNombre() {
     return this->nombre;
 }
 
-bool Finca::Finca::getBusInterno() {
+bool Finca::getBusInterno() {
     return this->bus_interno;
 }
 
-list<Edificio*> Finca::Finca::getEdificios() {
+list<Edificio*> Finca::getEdificios() {
     return this->edificios;
 }
 
-Campus::Campus(list<Finca> fincas, string nombre) {
+Campus::Campus(list<Finca*> fincas, string nombre) {
     this->fincas = fincas;
     this->nombre = nombre;
 }
-
-void Campus::Campus::imprimir() {
+void Campus::imprimir() {
 
     cout <<"Campus: "<< this->nombre << ", posee " << (this->fincas).size()<<" fincas";
 
@@ -96,7 +88,7 @@ void Campus::Campus::imprimir() {
             break;
         }
 
-        cout << ", finca " << it->getNombre();
+        cout << ", finca " << (*it)->getNombre();
         it++;
     }
     cout << endl;
@@ -111,8 +103,8 @@ void Campus::Campus::imprimir() {
             break;
         }
 
-        if (it->getBusInterno()) {
-            cout << "- finca " << it->getNombre() << endl;
+        if ((*it)->getBusInterno()) {
+            cout << "- finca " << (*it)->getNombre() << endl;
         }
 
         it++;
@@ -122,23 +114,20 @@ void Campus::Campus::imprimir() {
 
     for (auto it = (this->fincas).begin(); it != (this->fincas).end(); ++it) {
 
-        it->imprimir();
-    }
+        cout << endl;
+        (*it)->imprimir();
 
-    cout << endl <<"Informacion sobre cada aula: " << endl;
+        cout << endl << "Informacion sobre cada aula en la finca " << (*it)->getNombre() << ":" << endl;
 
-    for (auto it_finca = (this->fincas).begin(); it_finca != (this->fincas).end(); ++it_finca) {
-
-        cout << it_finca->getNombre() << ":" << endl;
-
-        for (auto it_edificio = (it_finca->getEdificios()).begin(); it_edificio != (it_finca->getEdificios()).end(); ++it_edificio) {
-
-            auto aula = dynamic_cast<EdificioDeAulas*>(*it_edificio);
-
-            if (aula) { 
-                (aula)->imprimir();
+        auto edificios = (*it)->getEdificios();
+        for (auto it_edificio = edificios.begin(); it_edificio != edificios.end(); ++it_edificio) {
+            auto edificio_de_aulas = dynamic_cast<EdificioDeAulas*>(*it_edificio);
+            if (edificio_de_aulas != nullptr) {
+                auto aulas = edificio_de_aulas->getAulas();
+                for (auto it_aula = aulas.begin(); it_aula != aulas.end(); ++it_aula) {
+                    (*it_aula)->imprimir();
+                }
             }
-            
-        }            
-    }    
+        }
+    }
 }
