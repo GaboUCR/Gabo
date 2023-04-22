@@ -4,8 +4,12 @@
 
 Para compilar el siguiente programa clone este repositorio, entre a la carpeta source y corra el siguiente comando:
 
-´´´g++ main.cpp edificio.cpp aula.cpp edificio_de_aulas.cpp parqueo.cpp finca.cpp campus.cpp -o campus.exe´´´
+```console 
+g++ main.cpp edificio.cpp aula.cpp edificio_de_aulas.cpp parqueo.cpp finca.cpp campus.cpp -o campus.exe
+```
 
 El comando anterior crea un ejecutable llamado campus.exe que se encuentra en la carpeta source.
 
-´´´./campus.exe´´´
+```console 
+./campus.exe
+´´´
