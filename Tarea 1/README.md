@@ -12,4 +12,4 @@ El comando anterior crea un ejecutable llamado campus.exe que se encuentra en la
 
 ```console 
 ./campus.exe
-´´´
+
