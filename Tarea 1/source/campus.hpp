@@ -1,76 +1,38 @@
+/**
+ * @file Campus.h
+ * @brief Definición de la clase Campus y sus métodos públicos.
+ */
+
 #ifndef CAMPUS_H
 #define CAMPUS_H
 
-#include <iostream>
-#include <list>
+#include "finca.hpp"
 #include <string>
-using namespace std;
 
-class Edificio {
-
-protected:
-    bool ascensor;
-
-public:
-    virtual ~Edificio() {}
-
-};
-
-class Aula {
-
-private:
-    int id;
-    int pupitres;
-    bool proyector;
-
-public:
-    Aula(int id, int pupitres, bool proyector);
-    void imprimir();
-
-};
-
-class EdificioDeAulas : public Edificio {
-
-private:
-    bool soda;
-    list<Aula*> aulas;
-
-public:
-    EdificioDeAulas(bool ascensor, bool soda, list<Aula*> aulas);
-    list<Aula*> getAulas ();
-    void imprimir();
-};
-
-class Parqueo : public Edificio {
-
-public:
-    Parqueo(bool ascensor);
-};
-
-class Finca {
-
-private:
-    bool bus_interno;
-    list<Edificio*> edificios;
-    string nombre;
-
-public:
-    Finca(bool bus_interno, string nombre, list<Edificio*> edificios);
-    list<Edificio*> getEdificios();
-    bool getBusInterno();
-    string getNombre();
-    void imprimir();
-};
-
+/**
+ * @class Campus
+ * @brief Clase que representa un campus universitario.
+ */
 class Campus {
 
-private:
-    list<Finca*> fincas;
-    string nombre;
+    private:
+        Finca* fincas[5]; /**< Arreglo de fincas que pertenecen al campus */
+        int num_fincas; /**< Número de fincas que pertenecen al campus */
+        std::string nombre; /**< Nombre del campus */
 
-public:
-    Campus(list<Finca*> fincas, string nombre);
-    void imprimir();
+    public:
+        /**
+         * @brief Constructor de la clase Campus.
+         * @param fincas Arreglo de punteros a objetos Finca que pertenecen al campus.
+         * @param num_fincas Número de fincas que pertenecen al campus.
+         * @param nombre Nombre del campus.
+         */
+        Campus(Finca* fincas[], int num_fincas, std::string nombre);
+
+        /**
+         * @brief Imprime la información del campus en la consola.
+         */
+        void imprimir();
 };
 
 #endif
