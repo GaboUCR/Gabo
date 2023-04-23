@@ -1,6 +1,9 @@
 /**
  * @file Campus.h
  * @brief Definición de la clase Campus y sus métodos públicos.
+ * @author Gabriel Gamboa
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
  */
 
 #ifndef CAMPUS_H

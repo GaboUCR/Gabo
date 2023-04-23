@@ -1,8 +1,9 @@
 /**
  * @file Aula.h
  * @brief Definición de la clase Aula y sus métodos públicos.
- * @author [Tu nombre]
- * @date [Fecha de creación]
+ * @author Gabriel Gamboa
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
  */
 
 #ifndef AULA_H

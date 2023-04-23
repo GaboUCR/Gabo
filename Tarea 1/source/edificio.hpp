@@ -1,6 +1,9 @@
 /**
  * @file Edificio.h
  * @brief Definición de la clase Edificio y sus métodos públicos y protegidos.
+  * @author Gabriel Gamboa
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
  */
 
 #ifndef EDIFICIO_H

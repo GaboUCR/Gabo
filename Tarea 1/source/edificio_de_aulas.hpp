@@ -1,6 +1,9 @@
 /**
  * @file EdificioDeAulas.h
  * @brief Definición de la clase EdificioDeAulas y sus métodos públicos.
+ * @author Gabriel Gamboa
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
  */
 
 #ifndef EDIFICIO_DE_AULAS_H

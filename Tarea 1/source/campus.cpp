@@ -1,7 +1,10 @@
+ /**
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
+ */
+
 #include <iostream>
 #include "campus.hpp"
-
-
 
 Campus::Campus(Finca* fincas[], int num_fincas, std::string nombre) {
 

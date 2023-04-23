@@ -1,6 +1,8 @@
 /**
  * @file Parqueo.h
  * @brief Definición de la clase Parqueo y sus métodos públicos.
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
  */
 
 #ifndef PARQUEO_H
@@ -11,6 +13,7 @@
 /**
  * @class Parqueo
  * @brief Clase que representa un parqueo.
+ * @author Gabriel Gamboa
  */
 class Parqueo : public Edificio {
 

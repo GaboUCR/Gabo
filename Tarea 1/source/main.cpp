@@ -1,9 +1,20 @@
+ /**
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
+ */
+
 #include <iostream>
 #include <list>
 #include <string>
 #include <random>
 #include "campus.hpp"
 using namespace std;
+
+
+void imprimirCampus(Campus campus) {
+
+   campus.imprimir();
+}
 
 int main() {
     random_device rd;
@@ -54,7 +65,9 @@ int main() {
     }
 
     Campus campus(fincas, 5, "My Campus");
-    campus.imprimir();
+    
+    imprimirCampus(campus);
+
 
     return 0;
     }

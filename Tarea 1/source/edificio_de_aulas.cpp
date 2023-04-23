@@ -1,3 +1,8 @@
+ /**
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
+ */
+
 #include <iostream>
 #include "edificio_de_aulas.hpp"
 

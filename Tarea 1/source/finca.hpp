@@ -1,6 +1,9 @@
 /**
  * @file Finca.h
  * @brief Definición de la clase Finca y sus métodos públicos.
+ * @author Gabriel Gamboa
+ * license BSD 3-Clause
+ * Copyright (c) 2023 Gabriel Gamboa
  */
 
 #ifndef FINCA_H
