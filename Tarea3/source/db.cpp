@@ -5,6 +5,7 @@
 #include <regex>
 #include <string>
 #include "empleado.hpp"
+#include "db.hpp"
 #include <stdexcept>
 
 vector<Empleado> leerArchivo(string nombreArchivo) {
@@ -17,6 +18,13 @@ vector<Empleado> leerArchivo(string nombreArchivo) {
     if (!archivo) {
         throw std::invalid_argument("No existe el archivo");
     }
+
+    // Expresiones regulares para validar los datos.
+    string patronNombre = "^[a-zA-Z ]+$";
+    string patronCorreo = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    string patronEdad = "^[0-9]+$";
+    string patronDepartamento = "^[a-zA-Z ]+$";
+    string patronSalario = "^[0-9]*\\.?[0-9]+$";
 
     // Lee cada línea del archivo.
     string linea;
@@ -34,6 +42,13 @@ vector<Empleado> leerArchivo(string nombreArchivo) {
         ss.ignore(1, ','); // Ignora la coma después de edad
         getline(ss, departamento, ',');
         ss >> salario;
+
+        // Verifica si los datos son válidos.
+        if (!validarEntrada(nombre, patronNombre) || !validarEntrada(correo, patronCorreo) ||
+            !validarEntrada(to_string(edad), patronEdad) || !validarEntrada(departamento, patronDepartamento) ||
+            !validarEntrada(to_string(salario), patronSalario)) {
+            continue; // Si algún dato no es válido, salta a la próxima iteración del bucle.
+        }
 
         // Crea un nuevo objeto Empleado y lo agrega al vector.
         Empleado nuevoEmpleado(nombre, correo, edad, departamento, salario);
@@ -88,7 +103,6 @@ vector<Empleado> buscarPorSalario(vector<Empleado> empleados, double salarioMini
 
     return empleadosConSalario;
 }
-
 
 int main() {
     // Se declara una variable "nombreArchivo" y se le asigna el valor "empleados.csv"
@@ -146,4 +160,3 @@ int main() {
     
     return 0;
 }
-
