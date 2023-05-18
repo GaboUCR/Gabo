@@ -106,7 +106,7 @@ vector<Empleado> buscarPorSalario(vector<Empleado> empleados, double salarioMini
 
 int main() {
     // Se declara una variable "nombreArchivo" y se le asigna el valor "empleados.csv"
-    string nombreArchivo = "empleados.csv";
+    string nombreArchivo = "../employees.csv";
 
     // Se declara un vector de empleados llamado "empleados" y se inicializa llamando a la función "leerArchivo" pasando el nombre del archivo como parámetro
     vector<Empleado> empleados = leerArchivo(nombreArchivo);
