@@ -8,6 +8,16 @@
 #include "db.hpp"
 #include <stdexcept>
 
+#include <algorithm> // para std::remove_if
+
+string trim(const string& str)
+{
+    string ws = " \t\n\r\f\v";
+    size_t start = str.find_first_not_of(ws);
+    size_t end = str.find_last_not_of(ws);
+    return (start == std::string::npos) ? "" : str.substr(start, end-start+1);
+}
+
 vector<Empleado> leerArchivo(string nombreArchivo) {
     vector<Empleado> empleados;
 
@@ -20,10 +30,10 @@ vector<Empleado> leerArchivo(string nombreArchivo) {
     }
 
     // Expresiones regulares para validar los datos.
-    string patronNombre = "^[a-zA-Z ]+$";
+    string patronNombre = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$";
     string patronCorreo = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     string patronEdad = "^[0-9]+$";
-    string patronDepartamento = "^[a-zA-Z ]+$";
+    string patronDepartamento = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$";
     string patronSalario = "^[0-9]*\\.?[0-9]+$";
 
     // Lee cada línea del archivo.
@@ -32,22 +42,32 @@ vector<Empleado> leerArchivo(string nombreArchivo) {
         // Usa un stringstream para dividir la línea en campos separados por comas.
         stringstream ss(linea);
         string nombre, correo, departamento;
+        string str_edad, str_salario;
         int edad;
         double salario;
 
         // Lee cada campo de la línea.
-        getline(ss, nombre, ',');
-        getline(ss, correo, ',');
-        ss >> edad;
-        ss.ignore(1, ','); // Ignora la coma después de edad
-        getline(ss, departamento, ',');
-        ss >> salario;
+        if(!getline(ss, nombre, ',') || !getline(ss, correo, ',') || !getline(ss, str_edad, ',') || 
+            !getline(ss, departamento, ',') || !getline(ss, str_salario, ',')) {
+            throw std::invalid_argument("Faltan datos"); 
+        }
+
+        // Remove leading/trailing whitespace
+        nombre = trim(nombre);
+        correo = trim(correo);
+        departamento = trim(departamento);
+        str_edad = trim(str_edad);
+        str_salario = trim(str_salario);
+
+        // Convertir edad y salario a números
+        edad = stoi(str_edad);
+        salario = stod(str_salario);
 
         // Verifica si los datos son válidos.
         if (!validarEntrada(nombre, patronNombre) || !validarEntrada(correo, patronCorreo) ||
-            !validarEntrada(to_string(edad), patronEdad) || !validarEntrada(departamento, patronDepartamento) ||
-            !validarEntrada(to_string(salario), patronSalario)) {
-            continue; // Si algún dato no es válido, salta a la próxima iteración del bucle.
+            !validarEntrada(str_edad, patronEdad) || !validarEntrada(departamento, patronDepartamento) ||
+            !validarEntrada(str_salario, patronSalario)) {
+            throw std::invalid_argument("Datos inválidos");
         }
 
         // Crea un nuevo objeto Empleado y lo agrega al vector.
@@ -60,6 +80,7 @@ vector<Empleado> leerArchivo(string nombreArchivo) {
 
     return empleados;
 }
+
 
 bool validarEntrada(string entrada, string patron) {
     std::regex patron_regex(patron);
