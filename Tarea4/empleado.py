@@ -9,6 +9,15 @@ class Empleado:
         self._departamento = departamento
         self._salario = salario
 
+    def __str__(self):
+        return (
+            f"Empleado:\n"
+            f"\tNombre: {self.nombre}\n"
+            f"\tCorreo: {self.correo}\n"
+            f"\tEdad: {self.edad}\n"
+            f"\tDepartamento: {self.departamento}\n"
+            f"\tSalario: {self.salario}\n"
+        )
     # Decorador @property. Este se usa para crear una propiedad que puede ser accesible públicamente
     # Cuando alguien llame a empleado.nombre, Python automáticamente llamará a este método.
     @property
