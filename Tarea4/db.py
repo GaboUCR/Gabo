@@ -29,4 +29,14 @@ def leer_archivo(nombre_archivo):
 
     return empleados
 
+def buscar_por_departamento(empleados, departamento):
+    if not validar_entrada(departamento, "^[a-zA-Z ]+$"):
+        raise ValueError("Entrada de departamento inválida.")
+    return [empleado for empleado in empleados if empleado.departamento == departamento]
 
+def buscar_por_salario(empleados, salario_minimo, salario_maximo):
+    if not all([validar_entrada(str(salario_minimo), "^\\$?[0-9]+(\\.[0-9]+)?$"),
+                validar_entrada(str(salario_maximo), "^\\$?[0-9]+(\\.[0-9]+)?$")]):
+        raise ValueError("Entrada de salario inválida.")
+
+    return [empleado for empleado in empleados if salario_minimo <= empleado.salario <= salario_maximo]
