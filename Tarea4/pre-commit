@@ -1,0 +1,11 @@
+#!/bin/sh
+
+python Tarea4/pre-commit.py
+
+# El comando anterior asume que Python está en tu PATH y que precommit.py está en la carpeta Tarea4 en la raíz de tu repositorio.
+
+# Si el script de Python indica que hubo un error (por ejemplo, si devuelve 1), abortamos el commit.
+if [ $? -ne 0 ]; then
+  echo "El script precommit.py encontró errores. Abortando el commit."
+  exit 1
+fi
