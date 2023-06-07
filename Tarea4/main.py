@@ -1,6 +1,6 @@
-import csv
 import re
 from empleado import Empleado
+
 
 def validar_entrada(entrada, patron):
     """
@@ -15,6 +15,7 @@ def validar_entrada(entrada, patron):
     """
     return re.match(patron, entrada) is not None
 
+
 def leer_archivo(nombre_archivo):
     """
     Lee el archivo CSV especificado y retorna una lista de objetos Empleado.
@@ -26,28 +27,38 @@ def leer_archivo(nombre_archivo):
     Una lista de objetos Empleado.
     """
     empleados = []
-    
+
     try:
         with open(nombre_archivo, 'r') as f:
             lineas = f.readlines()
 
         for linea in lineas:
-            nombre, correo, edad, departamento, salario = map(str.strip, linea.split(','))
+            nombre, correo, edad, departamento, \
+                salario = map(str.strip, linea.split(','))
 
-            # Si alguna entrada no es válida, se salta la línea actual y se procesa la siguiente
-            if not all([validar_entrada(nombre, "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$"),
-                        validar_entrada(correo, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"),
-                        validar_entrada(edad, "^[0-9]+$"),
-                        validar_entrada(departamento, "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$"),
-                        validar_entrada(salario, "^[0-9]*\\.?[0-9]+$")]):
+            # Si alguna entrada no es válida, se salta la línea actual
+            # y se procesa la siguiente
+            if not all([
+                validar_entrada(nombre, "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$"),
+                validar_entrada(
+                    correo, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+                ),
+                validar_entrada(edad, "^[0-9]+$"),
+                validar_entrada(departamento, "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$"),
+                validar_entrada(salario, "^[0-9]*\\.?[0-9]+$")
+            ]):
                 continue
 
-            empleados.append(Empleado(nombre, correo, int(edad), departamento, float(salario)))
+            empleados.append(
+                Empleado(nombre, correo, int(edad),
+                         departamento, float(salario))
+            )
 
     except FileNotFoundError:
-        raise ValueError (f"No se encontró el archivo {nombre_archivo}")
+        raise ValueError(f"No se encontró el archivo {nombre_archivo}")
 
     return empleados
+
 
 def main():
     empleados = leer_archivo('../employees.csv')
@@ -61,19 +72,45 @@ def main():
         if opcion == '0':
             break
         elif opcion == '1':
-            departamento = input("Ingrese el nombre del departamento: ").strip()
-            empleados_departamento = [e for e in empleados if e.departamento.lower() == departamento.lower()]
-            for empleado in empleados_departamento:                
-                print(empleado)
+            while True:
+                try:
+                    departamento = input("Ingrese el \
+                                         nombre del departamento: ").strip()
+                    empleados_departamento = [
+                        e for e in empleados if
+                        e.departamento.lower() == departamento.lower()
+                    ]
+                    if not empleados_departamento:
+                        print("Departamento no encontrado, intente de nuevo.")
+                        continue
+                    for empleado in empleados_departamento:
+                        print(empleado)
+                    break
+                except Exception as e:
+                    print(f"Error: {e}. Intente de nuevo.")
 
         elif opcion == '2':
-            rango_salario_min = float(input("Ingrese el salario mínimo: ").strip())
-            rango_salario_max = float(input("Ingrese el salario máximo: ").strip())
-            empleados_salario = [e for e in empleados if rango_salario_min <= e.salario <= rango_salario_max]
-            for empleado in empleados_salario:
-                print(empleado)
+            while True:
+                try:
+                    rango_salario_min = float(
+                        input("Ingrese el salario mínimo: ").strip())
+                    rango_salario_max = float(
+                        input("Ingrese el salario máximo: ").strip())
+                    empleados_salario = [
+                        e for e in empleados if rango_salario_min
+                        <= e.salario <= rango_salario_max
+                    ]
+                    if not empleados_salario:
+                        print("Rango de salarios no válido, intente de nuevo.")
+                        continue
+                    for empleado in empleados_salario:
+                        print(empleado)
+                    break
+                except ValueError:
+                    print("Entrada no válida, intente de nuevo.")
         else:
             print("Opción no válida, intente de nuevo.")
+
 
 if __name__ == "__main__":
     main()
