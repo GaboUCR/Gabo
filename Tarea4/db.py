@@ -40,8 +40,8 @@ def leer_archivo(nombre_archivo):
             )
             if not all([
                 validar_entrada(nombre, "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$"),
-                validar_entrada(correo, "^[a-zA-Z0-9._%+-]+@\
-                                [a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"),
+                validar_entrada(correo, "^[a-zA-Z0-9._%+-]+@"
+                                "[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"),
                 validar_entrada(edad, "^[0-9]+$"),
                 validar_entrada(departamento, "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$"),
                 validar_entrada(salario, "^[0-9]*\\.?[0-9]+$")

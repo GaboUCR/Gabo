@@ -61,7 +61,7 @@ def leer_archivo(nombre_archivo):
 
 
 def main():
-    empleados = leer_archivo('../employees.csv')
+    empleados = leer_archivo('../../employees.csv')
 
     while True:
         print("\n0: Salir")
@@ -74,8 +74,8 @@ def main():
         elif opcion == '1':
             while True:
                 try:
-                    departamento = input("Ingrese el \
-                                         nombre del departamento: ").strip()
+                    departamento = input("Ingrese el "
+                                         "nombre del departamento: ").strip()
                     empleados_departamento = [
                         e for e in empleados if
                         e.departamento.lower() == departamento.lower()
