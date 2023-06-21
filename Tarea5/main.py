@@ -1,6 +1,8 @@
 import os
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 def descargar_archivo(url, nombre_archivo):
     try:
@@ -66,6 +68,34 @@ for key, value in data.items():
         print(f"{k}: {v}")
 
 
+# Preparamos los datos
+labels1 = list(data['Illegal immigration across U.S. borders'].keys())
+values1 = list(data['Illegal immigration across U.S. borders'].values())
+
+labels2 = list(data['Risk of terrorism against Americans traveling by air outside the U.S.'].keys())
+values2 = list(data['Risk of terrorism against Americans traveling by air outside the U.S.'].values())
+
+x1 = np.arange(len(labels1))
+x2 = np.arange(len(labels2))
+
+# Creamos las barras
+width = 0.35  # ancho de las barras
+fig, ax = plt.subplots()
+
+rects1 = ax.bar(x1, values1, width, label='Illegal immigration')
+rects2 = ax.bar(x2 + len(values1), values2, width, label='Risk of terrorism')
+
+# Añadimos etiquetas, título y leyenda
+ax.set_ylabel('Scores')
+ax.set_title('Scores by concern')
+ax.set_xticks(np.append(x1, x2 + len(values1)))
+ax.set_xticklabels(labels1 + labels2)
+ax.legend()
+
+fig.tight_layout()
+
+# Mostramos el gráfico
+plt.show()
 
 
 
