@@ -58,10 +58,11 @@ def crear_primer_grafico(data):
     ax.set_ylabel('Scores')
     ax.set_title('Scores by concern')
     ax.set_xticks(np.append(x1, x2 + len(values1)))
-    ax.set_xticklabels(labels1 + labels2)
+    ax.set_xticklabels(labels1 + labels2, rotation=45) # Hemos añadido aquí "rotation='vertical'"
     ax.legend()
 
     fig.tight_layout()
 
     # Mostramos el gráfico
     plt.show(block=False)
+
