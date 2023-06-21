@@ -1,4 +1,6 @@
 # Cómo correr el programa:
+Clone este repositorio y ejecute alguno de los siguientes comandos en la raíz.
+
 ```console
 python main.py
 ```
