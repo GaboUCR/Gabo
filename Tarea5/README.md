@@ -17,3 +17,21 @@ Este cambio en la conducta de viaje puede tener implicaciones significativas. Pa
 
 
 ![2](https://github.com/GaboUCR/Gabo/assets/69367406/ec2f57fc-3f46-4c3c-91c4-5809fa78e774)
+
+## Gráfico 3: Cantidad de minutos de espera en el aeropuerto por persona en función de sus características
+
+El gráfico de cajas muestra la variación en los tiempos de espera promedio en los aeropuertos en función de las diferentes características de los pasajeros. Es notable que ciertos grupos de pasajeros experimentan tiempos de espera más largos que otros.
+
+Este patrón podría ser el resultado de las medidas de seguridad actuales en los aeropuertos, que podrían estar afectando de manera desigual a diferentes grupos de pasajeros. Si este es el caso, puede plantear problemas de equidad y eficiencia. Por un lado, los largos tiempos de espera pueden ser una molestia para los pasajeros y disuadirlos de viajar en avión. Por otro lado, si los recursos de seguridad se están dirigiendo desproporcionadamente hacia ciertos grupos, esto podría significar que otros grupos están siendo menos examinados, lo que podría tener implicaciones para la seguridad en general.
+
+Muestra que las personas discapacitadas tienen un tiempo de espera significativamente más corto en los aeropuertos en comparación con otros grupos. Esto podría ser el resultado de las políticas y regulaciones destinadas a facilitar su experiencia de viaje, lo que es una noticia alentadora ya que indica que las medidas para ayudar a los viajeros con discapacidades pueden estar teniendo un impacto positivo. Sin embargo, es importante recordar que esto no necesariamente significa que la experiencia de viaje de las personas discapacitadas sea fácil o sin estrés, ya que pueden enfrentar otros desafíos no capturados en este conjunto de datos.
+
+Por otro lado, es preocupante ver que las personas que se identifican como de "otras razas" experimentan tiempos de espera más largos. Este patrón podría estar indicando una discriminación sistemática o sesgos inconscientes en las medidas de seguridad del aeropuerto. Los tiempos de espera más largos pueden ser una fuente de estrés y ansiedad, y podrían llevar a estas personas a evitar o limitar sus viajes aéreos. Esto podría a su vez reforzar la segregación y la desigualdad al limitar su acceso a las oportunidades y experiencias que los viajes aéreos pueden proporcionar.
+
+Estos hallazgos subrayan la importancia de evaluar continuamente las políticas y prácticas de seguridad en los aeropuertos para asegurar que sean justas y equitativas. También destacan la necesidad de más investigación para entender mejor las experiencias de diferentes grupos de pasajeros y cómo pueden ser mejoradas. Las autoridades de aviación y seguridad deben abordar estos problemas de frente para garantizar que todos los viajeros sean tratados de manera equitativa y sin prejuicios.
+
+![3](https://github.com/GaboUCR/Gabo/assets/69367406/472e8df1-fc6b-4807-8b25-5a4900855bc4)
+
+
+
+
