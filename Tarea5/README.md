@@ -46,7 +46,7 @@ Estos hallazgos subrayan la importancia de evaluar continuamente las políticas 
 
 
 # Análisis de datos:
-
+En esta sección se analizan los datos que se imprimen en la consola al correr el programa.
 ## Análisis de Cantidad de Minutos de Espera en el Aeropuerto por Persona en función de sus Características
 En nuestro análisis, revisamos una serie de características individuales y cómo estas afectaban el tiempo promedio de espera en el aeropuerto. A continuación, presentamos los hallazgos clave:
 
@@ -68,4 +68,15 @@ En este análisis, calculamos el tiempo promedio de espera y el error estándar 
 - Los individuos de 18 a 54 años tuvieron un tiempo de espera promedio mayor en comparación con los de 55 años o más.
 Es importante mencionar que estos son solo observaciones preliminares y para establecer cualquier relación causal se necesita un análisis más profundo.
 
+## Análisis del Modo de Transporte antes y después del 11 de Septiembre
+Hemos analizado cómo cambió el modo de transporte de las personas antes y después de los eventos del 11 de Septiembre. Aquí están los hallazgos principales:
 
+### Estadísticas Descriptivas:
+
+Las estadísticas descriptivas nos dan una visión general de la distribución del modo de transporte. Aquí vemos que el uso promedio de los modos de transporte antes del 11 de septiembre varía entre el 6.9% y el 65.5%. Sin embargo, después del 11 de septiembre, vemos un cambio notable con el uso promedio del modo de transporte que varía entre el 6.9% y el 93.1%. Esto indica que el 11 de septiembre tuvo un impacto significativo en el modo de transporte que la gente eligió.
+
+### Moda:
+
+La moda nos indica los valores más comunes para cada columna. En este caso, la moda nos da una idea de los modos de transporte más utilizados antes y después del 11 de septiembre. Antes del 11 de septiembre, el aire comercial era el modo más popular de transporte. Sin embargo, después del 11 de septiembre, el vehículo personal se convirtió en el modo más utilizado de transporte.
+
+En resumen, a partir de estos datos, podemos concluir que el 11 de septiembre tuvo un impacto significativo en los modos de transporte utilizados por las personas. Específicamente, hubo un cambio notable del aire comercial al uso de vehículos personales. Este cambio puede ser atribuido a una variedad de factores, como las preocupaciones de seguridad o las nuevas regulaciones de viaje introducidas después del 11 de septiembre. Sin embargo, se necesita más análisis para determinar con precisión las razones exactas detrás de este cambio.
