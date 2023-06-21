@@ -29,7 +29,41 @@ urls = [
 ]
 descargar_csv(urls)
 
+# Asegúrate de que la ruta del archivo sea correcta
+ruta_archivo = 'figure1.csv'
 
+data = {}
+with open(ruta_archivo, 'r') as file:
+    for line in file:
+        if 'Illegal immigration across U.S. borders' in line:
+
+            line = line.rstrip()[0:len(line) -4]
+
+            print(line)
+            # Dividir la línea en dos partes
+            part1, part2 = line.split(',,')
+            
+            # Procesar la primera parte
+            values1 = part1.split(',')
+            data['Illegal immigration across U.S. borders'] = {
+                "not_at_all_concerned": float(values1[2]),
+                "somewhat_concerned": float(values1[3]),
+                "very_concerned": float(values1[4])
+            }
+            
+            # Procesar la segunda parte
+            values2 = part2.split(',')
+            data[values2[1]] = {
+                "not_at_all_concerned": float(values2[2]),
+                "very_concerned": float(values2[3]),
+            }
+            break
+
+# Imprimir los datos
+for key, value in data.items():
+    print(f"\n{key}:")
+    for k, v in value.items():
+        print(f"{k}: {v}")
 
 
 
