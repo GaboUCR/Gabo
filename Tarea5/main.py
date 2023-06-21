@@ -36,7 +36,6 @@ def parsear_primer_grafico():
 
                 line = line.rstrip()[0:len(line) -4]
 
-                print(line)
                 # Dividir la línea en dos partes
                 part1, part2 = line.split(',,')
                 
@@ -86,7 +85,7 @@ def crear_primer_grafico(data):
     fig.tight_layout()
 
     # Mostramos el gráfico
-    plt.show()
+    plt.show(block=False)
 
 def parsear_segundo_grafico():
 
@@ -133,7 +132,7 @@ def crear_segundo_grafico(df):
     plt.ylabel('Porcentaje')
     plt.title('Modo de transporte antes y después del 11 de Septiembre')
     plt.grid(True)
-    plt.show()
+    plt.show(block=False)
 
 def parsear_tercer_grafico ():
 
@@ -143,8 +142,8 @@ def parsear_tercer_grafico ():
         lineas = archivo.readlines()
 
     # Tomar solo las líneas relevantes y limpiarlas
-    lineas_relevantes = [lineas[3]]  # La primera línea relevante es la cuarta línea
-    indices_relevantes = [5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21]  # Los índices de las otras líneas relevantes
+    lineas_relevantes = [lineas[2]]  # La primera línea relevante es la cuarta línea
+    indices_relevantes = [5, 3, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21]  # Los índices de las otras líneas relevantes
     for indice in indices_relevantes:
         # Limpieza de las líneas: eliminar las comas extras al final de la línea
         linea_limpiada = lineas[indice].rstrip(",\n")
@@ -156,6 +155,20 @@ def parsear_tercer_grafico ():
 
     return df
 
+def crear_tercer_grafico(df):
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    df.boxplot(column='Average Minutes', by='Characteristic', ax=ax)
+    plt.xticks(rotation=45)  # rotar las etiquetas del eje x 45 grados
+    plt.title('Cantidad de minutos de espera en el aeropuerto por persona en funcion de sus caracteristicas')
+    plt.suptitle('')  # Elimina el título automático
+    plt.xlabel('Caracteristicas')
+    plt.ylabel('Minutos promedio')
+    plt.tight_layout()  # Ajusta automáticamente el layout para que todo se vea bien
+    plt.show()
+
+
+
 urls = [
     "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_02_issue_01/csv/figure1.csv",
     "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_01_issue_02/csv/table2.csv",
@@ -164,19 +177,19 @@ urls = [
 
 descargar_csv(urls)
 
-dataframe = parsear_tercer_grafico()
 
-print(dataframe)
-
-# dataframe = parsear_segundo_grafico()
-# crear_segundo_grafico(dataframe)
+dataframe2 = parsear_segundo_grafico()
+crear_segundo_grafico(dataframe2)
 
 
-# data = parsear_primer_grafico()
+data = parsear_primer_grafico()
 
-# crear_primer_grafico(data)
+crear_primer_grafico(data)
 
 
+df3 = parsear_tercer_grafico()
+
+crear_tercer_grafico(df3)
 
 
 
