@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import io
 
 def descargar_archivo(url, nombre_archivo):
     try:
@@ -87,28 +88,6 @@ def crear_primer_grafico(data):
     # Mostramos el gráfico
     plt.show()
 
-def crear_segundo_grafico(df):
-    """
-    Esta función crea un gráfico de dispersión a partir de un DataFrame.
-    :param df: El DataFrame a graficar.
-    """
-    plt.figure(figsize=(10, 6))
-    plt.scatter(df['Modo'], df['Modo antes del 11 de Septiembre'], color='blue', label='Antes del 11 de Septiembre')
-    plt.scatter(df['Modo'], df['Modo despues del 11 de Septiembre'], color='red', label='Después del 11 de Septiembre')
-    plt.legend()
-    plt.xlabel('Modo de transporte')
-    plt.ylabel('Porcentaje')
-    plt.title('Modo de transporte antes y después del 11 de Septiembre')
-    plt.grid(True)
-    plt.show()
-
-urls = [
-    "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_02_issue_01/csv/figure1.csv",
-    "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_01_issue_02/csv/table2.csv"
-]
-
-descargar_csv(urls)
-
 def parsear_segundo_grafico():
 
     # Leer el archivo en líneas
@@ -141,10 +120,56 @@ def parsear_segundo_grafico():
             
     return df
 
+def crear_segundo_grafico(df):
+    """
+    Esta función crea un gráfico de dispersión a partir de un DataFrame.
+    :param df: El DataFrame a graficar.
+    """
+    plt.figure(figsize=(10, 6))
+    plt.scatter(df['Modo'], df['Modo antes del 11 de Septiembre'], color='blue', label='Antes del 11 de Septiembre')
+    plt.scatter(df['Modo'], df['Modo despues del 11 de Septiembre'], color='red', label='Después del 11 de Septiembre')
+    plt.legend()
+    plt.xlabel('Modo de transporte')
+    plt.ylabel('Porcentaje')
+    plt.title('Modo de transporte antes y después del 11 de Septiembre')
+    plt.grid(True)
+    plt.show()
 
+def parsear_tercer_grafico ():
 
-dataframe = parsear_segundo_grafico()
-crear_segundo_grafico(dataframe)
+    nombre_archivo = "table_02.csv"
+    # Leer el archivo de texto
+    with open(nombre_archivo, 'r') as archivo:
+        lineas = archivo.readlines()
+
+    # Tomar solo las líneas relevantes y limpiarlas
+    lineas_relevantes = [lineas[3]]  # La primera línea relevante es la cuarta línea
+    indices_relevantes = [5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 21]  # Los índices de las otras líneas relevantes
+    for indice in indices_relevantes:
+        # Limpieza de las líneas: eliminar las comas extras al final de la línea
+        linea_limpiada = lineas[indice].rstrip(",\n")
+        lineas_relevantes.append(linea_limpiada)
+
+    # Unir las líneas relevantes en un solo texto y leerlo como un DataFrame de pandas
+    texto_relevante = "\n".join(lineas_relevantes)
+    df = pd.read_csv(io.StringIO(texto_relevante))
+
+    return df
+
+urls = [
+    "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_02_issue_01/csv/figure1.csv",
+    "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_01_issue_02/csv/table2.csv",
+    "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/airline_passenger_opinions_on_security_screening_procedures/csv/table_02.csv"
+]
+
+descargar_csv(urls)
+
+dataframe = parsear_tercer_grafico()
+
+print(dataframe)
+
+# dataframe = parsear_segundo_grafico()
+# crear_segundo_grafico(dataframe)
 
 
 # data = parsear_primer_grafico()
