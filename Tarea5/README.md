@@ -45,5 +45,27 @@ Estos hallazgos subrayan la importancia de evaluar continuamente las políticas 
 ![3](https://github.com/GaboUCR/Gabo/assets/69367406/472e8df1-fc6b-4807-8b25-5a4900855bc4)
 
 
+# Análisis de datos:
+
+## Análisis de Cantidad de Minutos de Espera en el Aeropuerto por Persona en función de sus Características
+En nuestro análisis, revisamos una serie de características individuales y cómo estas afectaban el tiempo promedio de espera en el aeropuerto. A continuación, presentamos los hallazgos clave:
+
+### Estadísticas Descriptivas:
+
+Las estadísticas descriptivas proporcionan una visión general de la distribución de los tiempos promedio de espera. En nuestro conjunto de datos, vemos que el tiempo promedio de espera en el aeropuerto varía entre 11.4 y 27.3 minutos. El tiempo de espera medio es de 20.1 minutos, y la mayoría de los datos se sitúa entre 18 y 20.9 minutos (esto es lo que nos indican los percentiles 25% y 75%).
+
+### Moda:
+
+La moda nos indica el valor que más veces aparece en cada columna. En nuestro caso, se nota que los valores de moda no son muy útiles para la interpretación, debido a que los valores son mayormente únicos en las columnas de 'Average Minutes' y 'Standard Error'. Sin embargo, en la columna 'Sample Size', el valor de moda es 22, lo que indica que la muestra más pequeña que tenemos para cualquier característica es de 22 individuos.
+
+### Agrupación por Características:
+
+En este análisis, calculamos el tiempo promedio de espera y el error estándar para cada característica. Aquí hay algunas observaciones interesantes:
+
+- Los individuos discapacitados tuvieron el menor tiempo de espera promedio, con 11.4 minutos. Esto podría deberse a las políticas del aeropuerto que dan prioridad a estos individuos.
+- Los individuos de 'Otra raza' tuvieron el mayor tiempo promedio de espera, con 27.3 minutos. Esto podría indicar una disparidad en los tiempos de espera que necesita ser investigada más a fondo.
+- Las personas con un ingreso familiar de $75K o más tuvieron un tiempo de espera promedio más alto que aquellos con un ingreso menor a $75K. Esto puede sugerir que los vuelos frecuentados por pasajeros de mayor ingreso podrían tener mayores tiempos de espera.
+- Los individuos de 18 a 54 años tuvieron un tiempo de espera promedio mayor en comparación con los de 55 años o más.
+Es importante mencionar que estos son solo observaciones preliminares y para establecer cualquier relación causal se necesita un análisis más profundo.
 
 
