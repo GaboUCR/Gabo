@@ -89,14 +89,53 @@ def crear_primer_grafico(data):
 
 
 urls = [
-    "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_02_issue_01/csv/figure1.csv"
+    "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_02_issue_01/csv/figure1.csv",
+    "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_01_issue_02/csv/table2.csv"
 ]
 
 descargar_csv(urls)
 
-data = parsear_primer_grafico()
+def parsear_segundo_grafico():
 
-crear_primer_grafico(data)
+    # Leer el archivo en líneas
+    nombre_archivo = "table2.csv"
+    # Leer el archivo en líneas
+    with open(nombre_archivo, 'r') as archivo:
+        lineas = archivo.readlines()
+
+    # Reescribir el archivo con el encabezado corregido
+    with open(nombre_archivo, 'w') as archivo:
+        # Corregir el encabezado
+        lineas[0] = "Modo,Modo antes del 11 de Septiembre,Modo despues del 11 de Septiembre\n"
+        # Escribir las líneas de vuelta en el archivo
+        archivo.writelines(lineas)
+    
+    # Ahora, leer el archivo CSV limpiado en un DataFrame
+    df = pd.read_csv(nombre_archivo)
+    
+    # Reemplazar '-' con NaN
+    df = df.replace('-', np.nan)
+    
+    # Convertir las cadenas de porcentaje en flotantes
+    for columna in df.columns[1:]:
+        df[columna] = df[columna].str.rstrip('%').astype('float') / 100.0
+        
+    # Manejo especial para "Tren" y "Otro"
+    for i, fila in df.iterrows():
+        if pd.isna(df.at[i, "Modo despues del 11 de Septiembre"]):
+            df.at[i, "Modo despues del 11 de Septiembre"] = df.at[i, "Modo antes del 11 de Septiembre"]
+            
+    return df
+
+
+
+dataframe = parsear_segundo_grafico()
+print(dataframe)
+
+
+# data = parsear_primer_grafico()
+
+# crear_primer_grafico(data)
 
 
 
