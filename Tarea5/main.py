@@ -87,6 +87,20 @@ def crear_primer_grafico(data):
     # Mostramos el gráfico
     plt.show()
 
+def crear_segundo_grafico(df):
+    """
+    Esta función crea un gráfico de dispersión a partir de un DataFrame.
+    :param df: El DataFrame a graficar.
+    """
+    plt.figure(figsize=(10, 6))
+    plt.scatter(df['Modo'], df['Modo antes del 11 de Septiembre'], color='blue', label='Antes del 11 de Septiembre')
+    plt.scatter(df['Modo'], df['Modo despues del 11 de Septiembre'], color='red', label='Después del 11 de Septiembre')
+    plt.legend()
+    plt.xlabel('Modo de transporte')
+    plt.ylabel('Porcentaje')
+    plt.title('Modo de transporte antes y después del 11 de Septiembre')
+    plt.grid(True)
+    plt.show()
 
 urls = [
     "https://www.bts.gov/sites/bts.dot.gov/files/legacy/publications/omnistats/volume_02_issue_01/csv/figure1.csv",
@@ -130,7 +144,7 @@ def parsear_segundo_grafico():
 
 
 dataframe = parsear_segundo_grafico()
-print(dataframe)
+crear_segundo_grafico(dataframe)
 
 
 # data = parsear_primer_grafico()
