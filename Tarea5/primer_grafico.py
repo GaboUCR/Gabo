@@ -33,6 +33,7 @@ def parsear_primer_grafico():
                 }
                 break
     
+    
     return data
 
 def crear_primer_grafico(data):

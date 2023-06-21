@@ -8,6 +8,35 @@ import primer_grafico
 import segundo_grafico
 import tercer_grafico
 
+def analizar_datos(df1, df2, df3):
+    print("\n\n\n\n\nAnálisis de Nivel de preocupación acerca de la inmigración ilegal y riesgo de terrorismo")
+    for key in df1:
+        print(f"\nPara la variable '{key}':")
+        for subkey in df1[key]:
+            print(f"El porcentaje que corresponde a '{subkey}' es {df1[key][subkey]}%")
+
+    print("\n\n\n\n\nAnálisis de Modo de transporte antes y después del 11 de septiembre:")
+    descriptive_stats = df2.describe()
+    mode = df2.mode()
+    print("\nValores descriptivos:")
+    print(descriptive_stats)
+    print("\nModa de cada columna:")
+    print(mode)
+
+    print("\n\n\n\n\nAnálisis de Cantidad de minutos de espera en el aeropuerto por persona en función de sus características")
+    descriptive_stats = df3.describe()
+    mode = df3.mode()
+    grouped = df3.groupby('Characteristic').mean()
+
+    print("\nValores descriptivos:")
+    print(descriptive_stats)
+    print("\nModa de cada columna:")
+    print(mode)
+    print("\nAgrupación y resumen por característica:")
+    print(grouped)
+
+    return None
+
 def descargar_archivo(url, nombre_archivo):
     try:
         response = requests.get(url)
@@ -36,19 +65,13 @@ urls = [
 
 descargar_csv(urls)
 
-
-dataframe2 = segundo_grafico.parsear_segundo_grafico()
-segundo_grafico.crear_segundo_grafico(dataframe2)
-
-
-data = primer_grafico.parsear_primer_grafico()
-
-primer_grafico.crear_primer_grafico(data)
-
-
+df1 = primer_grafico.parsear_primer_grafico()
+df2 = segundo_grafico.parsear_segundo_grafico()
 df3 = tercer_grafico.parsear_tercer_grafico()
 
+# El significado de estos datos se explica en la documentación
+analizar_datos(df1, df2, df3)
+
+primer_grafico.crear_primer_grafico(df1)
+segundo_grafico.crear_segundo_grafico(df2)
 tercer_grafico.crear_tercer_grafico(df3)
-
-
-
