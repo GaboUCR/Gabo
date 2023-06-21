@@ -1,3 +1,13 @@
+# Cómo correr el programa:
+```console
+python main.py
+```
+O puede utilizar make si lo tiene instalada:
+
+```console
+make
+```
+
 # Análisis de resultados:
 
 ## Gráfico 1: Nivel de preocupación acerca de la inmigración ilegal y riesgo de terrorismo
