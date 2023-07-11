@@ -14,6 +14,14 @@ Se ejecuta el programa:
 ./a.exe
 ```
 
+## Como correr Contar palabras
+
+En el directorio de ExamenFinal ejecute el siguiente comando:
+
+```console
+py main.py
+```
+
 ## pregunta 1 
 El paso por valor significa que estamos proporcionando el valor directamente a la función. En este caso, si la función modifica el valor, no se refleja fuera de la función porque la función tiene su propia copia del valor.
 
