@@ -1,5 +1,19 @@
 # Examen Final de Estructuras abstractas de datos y algoritmos para ingeniería.
 
+## Como correr la clase calculadora
+
+Ejecute los siguientes comandos en el directorio ExamenFinal.
+
+Compilación:
+```console
+g++ Calculadora.cpp CalcuTest.cpp -o a.exe
+```
+
+Se ejecuta el programa:
+```console
+./a.exe
+```
+
 ## pregunta 1 
 El paso por valor significa que estamos proporcionando el valor directamente a la función. En este caso, si la función modifica el valor, no se refleja fuera de la función porque la función tiene su propia copia del valor.
 
